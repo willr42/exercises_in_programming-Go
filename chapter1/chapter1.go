@@ -89,26 +89,32 @@ func stringToCents(s string) (int, error) {
 		log.Fatalln("$$.CC")
 	}
 
-	// Only dollars
-	if len(parts) == 1 {
-		dollars, err := strconv.Atoi(noDollar)
+	dollars := 0
+	cents := 0
+
+	if len(parts) > 0 {
+		var err error
+		dollars, err = strconv.Atoi(parts[0])
 		if err != nil {
-			return 0, errors.New("couldn't convert to int")
+			return 0, fmt.Errorf("couldn't convert dollars to int: %w", err)
+		}
+	}
+
+	// Cents exists
+	if len(parts) == 2 {
+		if len(parts[1]) > 2 {
+			parts[1] = parts[1][:2]
+		}
+		var err error
+		cents, err = strconv.Atoi(parts[1])
+		if err != nil {
+
+			return 0, fmt.Errorf("couldn't convert dollars to int: %w", err)
 		}
 
-		// to cents
-		return dollars * 100, nil
 	}
+	return dollars*100 + cents, nil
 
-	centStr := parts[1][:2]
-	fmt.Print(centStr)
-	finalStr := parts[0] + centStr
-	finalCents, err := strconv.Atoi(finalStr)
-	if err != nil {
-		return 0, errors.New("couldn't convert to int")
-	}
-
-	return finalCents, nil
 }
 
 func formatCents(cents int) string {
