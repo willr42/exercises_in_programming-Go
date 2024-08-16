@@ -10,11 +10,7 @@ import (
 	"strings"
 )
 
-// - tip
-// - total amount
-// - prompt for bill & tip
-// - compute tip
-// - display tip & final total
+// TODO: GUI where function runs live
 func CalculateTip() {
 	r := bufio.NewReader(os.Stdin)
 
