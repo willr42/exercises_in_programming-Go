@@ -2,7 +2,7 @@ package intro
 
 import (
 	"bufio"
-	"errors"
+	"exercises-in-programming/util"
 	"fmt"
 	"log"
 	"os"
@@ -31,7 +31,7 @@ func CalculateTip() {
 
 func getBillCents(r *bufio.Reader) int {
 	for {
-		bill, err := getInput(r)
+		bill, err := util.GetInput(r)
 		if err != nil {
 			fmt.Print("Invalid input. Try again: ")
 			continue
@@ -47,7 +47,7 @@ func getBillCents(r *bufio.Reader) int {
 
 func getTipRate(r *bufio.Reader) int {
 	for {
-		tipRate, err := getInput(r)
+		tipRate, err := util.GetInput(r)
 		if err != nil {
 			fmt.Print("Invalid input. Try again: ")
 			continue
@@ -66,15 +66,6 @@ func getTipRate(r *bufio.Reader) int {
 
 		return tipRateNum
 	}
-}
-
-func getInput(r *bufio.Reader) (string, error) {
-	line, err := r.ReadString('\n')
-	if err != nil {
-		return "", errors.New("couldn't read input")
-	}
-	finalLine := strings.Trim(line, "\n")
-	return finalLine, nil
 }
 
 func stringToCents(s string) (int, error) {
