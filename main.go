@@ -1,9 +1,7 @@
 package main
 
-import (
-	"exercises-in-programming/chapter1"
-)
+import "exercises-in-programming/intro"
 
 func main() {
-	chapter1.CalculateTip()
+	intro.CalculateTip()
 }
