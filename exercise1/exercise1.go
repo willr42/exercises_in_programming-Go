@@ -20,9 +20,16 @@ func Run() {
 	fmt.Println(final)
 }
 
+var customGreetings = map[string]string{"Brian": "Hello, %s! Have a great day.", "Susan": "Oh hey %s. How's your day looking?"}
+
 func buildOutput(s string) string {
 
-	out := fmt.Sprintf("Hello, %s, nice to meet you!", s)
+	greeting, ok := customGreetings[s]
+	if !ok {
+		return "Oh, a new face! Nice to meet you."
+	}
+
+	out := fmt.Sprintf(greeting, s)
 
 	return out
 }
