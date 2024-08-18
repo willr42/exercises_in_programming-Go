@@ -11,14 +11,12 @@ import (
 // Printing quotes
 func Run() {
 	r := bufio.NewReader(os.Stdin)
-	fmt.Print("What is the quote? ")
-	quote, err := util.GetInput(r)
+	quote, err := util.GetInput(r, "What is the quote? ")
 
 	if err != nil {
 		log.Fatalln(err)
 	}
-	fmt.Print("Who said it? ")
-	author, err := util.GetInput(r)
+	author, err := util.GetInput(r, "Who said it? ")
 
 	if err != nil {
 		log.Fatalln(err)

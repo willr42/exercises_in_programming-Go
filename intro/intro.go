@@ -14,11 +14,8 @@ import (
 func CalculateTip() {
 	r := bufio.NewReader(os.Stdin)
 
-	fmt.Print("What is the bill? ")
-	billCents := getBillCents(r)
-
-	fmt.Print("What is the tip percentage? ")
-	tipRate := getTipRate(r)
+	billCents := getBillCents(r, "What is the bill? ")
+	tipRate := getTipRate(r, "What is the tip percentage? ")
 
 	tipAmount := (billCents * tipRate) / 100
 	tipStr := formatCents(tipAmount)
@@ -29,9 +26,9 @@ func CalculateTip() {
 	fmt.Printf("The total is $%s\n", totalStr)
 }
 
-func getBillCents(r *bufio.Reader) int {
+func getBillCents(r *bufio.Reader, s string) int {
 	for {
-		bill, err := util.GetInput(r)
+		bill, err := util.GetInput(r, s)
 		if err != nil {
 			fmt.Print("Invalid input. Try again: ")
 			continue
@@ -45,9 +42,9 @@ func getBillCents(r *bufio.Reader) int {
 	}
 }
 
-func getTipRate(r *bufio.Reader) int {
+func getTipRate(r *bufio.Reader, s string) int {
 	for {
-		tipRate, err := util.GetInput(r)
+		tipRate, err := util.GetInput(r, s)
 		if err != nil {
 			fmt.Print("Invalid input. Try again: ")
 			continue

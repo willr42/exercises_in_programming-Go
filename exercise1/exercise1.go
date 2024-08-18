@@ -11,8 +11,7 @@ import (
 // Saying hello
 func Run() {
 	r := bufio.NewReader(os.Stdin)
-	fmt.Print("What is your name? ")
-	input, err := util.GetInput(r)
+	input, err := util.GetInput(r, "What is your name? ")
 	if err != nil {
 		log.Fatalln(err)
 	}
