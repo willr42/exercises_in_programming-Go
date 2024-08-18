@@ -3,11 +3,14 @@ package util
 import (
 	"bufio"
 	"errors"
+	"fmt"
 	"strconv"
 	"strings"
 )
 
 func GetInput(r *bufio.Reader, s string) (string, error) {
+	fmt.Print(s)
+
 	line, err := r.ReadString('\n')
 	if err != nil {
 		return "", errors.New("couldn't read input")
