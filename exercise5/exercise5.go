@@ -59,7 +59,7 @@ func strToInt(s string) (int, error) {
 	}
 
 	if x < 0 {
-		return 0, fmt.Errorf("Input %d can't below 0", x)
+		return 0, fmt.Errorf("input %d can't below 0", x)
 	}
 
 	return x, nil
