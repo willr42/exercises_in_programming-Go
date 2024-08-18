@@ -15,3 +15,13 @@ func GetInput(r *bufio.Reader, s string) (string, error) {
 	finalLine := strings.Trim(line, "\n")
 	return finalLine, nil
 }
+
+func StrToInt(s string) (int, error) {
+	x, err := strconv.Atoi(s)
+
+	if err != nil {
+		return 0, err
+	}
+
+	return x, nil
+}
