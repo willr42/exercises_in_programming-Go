@@ -8,6 +8,7 @@ import (
 	"os"
 )
 
+// Saying hello
 func Run() {
 	r := bufio.NewReader(os.Stdin)
 	fmt.Print("What is your name? ")

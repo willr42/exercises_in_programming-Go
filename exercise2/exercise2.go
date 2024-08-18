@@ -7,6 +7,7 @@ import (
 	"os"
 )
 
+// Counting the number of characters
 func Run() {
 	r := bufio.NewReader(os.Stdin)
 	fmt.Print("What is the input string? ")
