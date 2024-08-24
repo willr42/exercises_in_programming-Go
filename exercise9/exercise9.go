@@ -13,20 +13,7 @@ var gallonToFeet = 350
 // Exercise
 func Run() {
 
-	r := bufio.NewReader(os.Stdin)
-	l, err := util.GetIntWithPrompt(r, "Room length: ")
-
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	w, err := util.GetIntWithPrompt(r, "Room width: ")
-
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	totalArea := w * l
+	totalArea := rectArea()
 
 	var gallonsRequired = 0
 	areaCounter := totalArea
@@ -42,4 +29,21 @@ func Run() {
 	}
 
 	fmt.Printf("You will need to purchase %d gallons of paint to cover %d square feet.\n", gallonsRequired, totalArea)
+}
+
+func rectArea() int {
+	r := bufio.NewReader(os.Stdin)
+	l, err := util.GetIntWithPrompt(r, "Room length: ")
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	w, err := util.GetIntWithPrompt(r, "Room width: ")
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	return w * l
 }
