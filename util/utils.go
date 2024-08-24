@@ -28,3 +28,18 @@ func StrToInt(s string) (int, error) {
 
 	return x, nil
 }
+
+func GetIntWithPrompt(r *bufio.Reader, prompt string) (int, error) {
+	inpStr, err := GetInput(r, prompt)
+
+	if err != nil {
+		return 0, err
+	}
+	inputInt, err := StrToInt(inpStr)
+
+	if err != nil {
+		return 0, err
+	}
+
+	return inputInt, nil
+}

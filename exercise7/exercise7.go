@@ -15,9 +15,17 @@ func Run() {
 
 	r := bufio.NewReader(os.Stdin)
 
-	length := getIntWithPrompt(r, "What is the length of the room in feet? ")
+	length, err := util.GetIntWithPrompt(r, "What is the length of the room in feet? ")
 
-	width := getIntWithPrompt(r, "What is the width of the room in feet? ")
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	width, err := util.GetIntWithPrompt(r, "What is the width of the room in feet? ")
+
+	if err != nil {
+		log.Fatalln(err)
+	}
 
 	fmt.Printf("You entered dimensions of %d feet by %d feet.\n", length, width)
 
@@ -28,19 +36,4 @@ func Run() {
 	inMeters := float64(area) * ftToM
 	fmt.Printf("%.3f square meters\n", inMeters)
 
-}
-
-func getIntWithPrompt(r *bufio.Reader, prompt string) int {
-	inpStr, err := util.GetInput(r, prompt)
-
-	if err != nil {
-		log.Fatalln(err)
-	}
-	inputInt, err := util.StrToInt(inpStr)
-
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	return inputInt
 }
