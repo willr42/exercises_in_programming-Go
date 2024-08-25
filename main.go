@@ -1,9 +1,9 @@
 package main
 
 import (
-	"exercises-in-programming/exercise12"
+	"exercises-in-programming/exercise13"
 )
 
 func main() {
-	exercise12.Run()
+	exercise13.Run()
 }
