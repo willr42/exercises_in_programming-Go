@@ -15,8 +15,7 @@ func GetInput(r *bufio.Reader, s string) (string, error) {
 	if err != nil {
 		return "", errors.New("couldn't read input")
 	}
-	finalLine := strings.Trim(line, "\n")
-	return finalLine, nil
+	return strings.TrimSpace(line), nil
 }
 
 func StrToInt(s string) (int, error) {
