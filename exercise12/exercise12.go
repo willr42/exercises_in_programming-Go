@@ -12,7 +12,7 @@ import (
 func Run() {
 
 	r := bufio.NewReader(os.Stdin)
-	principal, err := util.GetFloatWithPrompt(r, "Enter the principal: ")
+	principal, err := util.GetCentsWithPrompt(r, "Enter the principal: ")
 
 	if err != nil {
 		log.Fatalln(err)
@@ -32,8 +32,8 @@ func Run() {
 		log.Fatalln(err)
 	}
 
-	total := principal * (1 + rate*float64(years))
+	total := util.FormatCents(int(float64(principal) * (1 + rate*float64(years))))
 
-	fmt.Printf("After %d years at %f%%, the investment will be worth %f", years, rate, total)
+	fmt.Printf("After %d years at %f%%, the investment will be worth $%s\n", years, rate, total)
 
 }
