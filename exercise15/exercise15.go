@@ -1,11 +1,11 @@
 package exercise15
 
 import (
-	"bufio"
-	"exercises-in-programming/util"
 	"fmt"
 	"log"
-	"os"
+	"syscall"
+
+	"golang.org/x/term"
 )
 
 const PASSWORD = "melon"
@@ -13,12 +13,14 @@ const PASSWORD = "melon"
 // Password validation
 func Run() {
 
-	r := bufio.NewReader(os.Stdin)
-	usrpass, err := util.GetInput(r, "What is the password? ")
+	fmt.Print("What is the password? ")
+	bytepass, err := term.ReadPassword(syscall.Stdin)
 
 	if err != nil {
 		log.Fatalln(err)
 	}
+
+	usrpass := string(bytepass)
 
 	if PASSWORD != usrpass {
 		fmt.Println("I don't know you.")
