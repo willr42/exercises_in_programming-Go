@@ -75,19 +75,35 @@ func GetCentsWithPrompt(r *bufio.Reader, prompt string) (int, error) {
 	if err != nil {
 		return 0, err
 	}
-	parts := strings.Split(inpStr, ".")
-	if len(parts) > 2 {
+
+	cents, err := StrToCents(inpStr)
+
+	if err != nil {
 		return 0, err
+	}
+
+	return cents, nil
+}
+
+var (
+	ErrInvalidFormat = fmt.Errorf("must be in whole dollars or dollar.cents fmt")
+	ErrInvalidNumber = fmt.Errorf("couldn't convert dollars to int")
+)
+
+func StrToCents(s string) (int, error) {
+	parts := strings.Split(s, ".")
+	if len(parts) > 2 {
+		return 0, ErrInvalidFormat
 	}
 
 	dollars := 0
 	cents := 0
+	var err error
 
 	if len(parts) > 0 {
-		var err error
 		dollars, err = strconv.Atoi(parts[0])
 		if err != nil {
-			return 0, fmt.Errorf("couldn't convert dollars to int: %w", err)
+			return 0, ErrInvalidNumber
 		}
 	}
 
@@ -96,16 +112,14 @@ func GetCentsWithPrompt(r *bufio.Reader, prompt string) (int, error) {
 		if len(parts[1]) > 2 {
 			parts[1] = parts[1][:2]
 		}
-		var err error
 		cents, err = strconv.Atoi(parts[1])
 		if err != nil {
 
-			return 0, fmt.Errorf("couldn't convert dollars to int: %w", err)
+			return 0, ErrInvalidNumber
 		}
 
 	}
 	return dollars*100 + cents, nil
-
 }
 
 func FormatCents(cents int) string {
