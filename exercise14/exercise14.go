@@ -7,6 +7,7 @@ import (
 	"log"
 	"math"
 	"os"
+	"strings"
 )
 
 // Exercise
@@ -23,12 +24,14 @@ func Run() {
 		log.Fatalln(err)
 	}
 
+	state = strings.ToLower(state)
+
 	fmt.Println(printOutput(amount, state))
 }
 
 func printOutput(amount int, state string) string {
 
-	if state == "WI" {
+	if state == "wi" || state == "wisconsin" {
 		taxRate := 5.5
 		tax := int(math.Round(float64(amount) * taxRate))
 		// as cents
